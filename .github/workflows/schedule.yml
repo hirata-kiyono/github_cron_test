@@ -1,8 +1,9 @@
 name: Scheduler
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '* 20 * * *'
 
 jobs:
   build:
@@ -10,18 +11,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v2
+    - name: Set up Go
+      uses: actions/setup-go@v3
       with:
-        python-version: '3.8'
-        architecture: 'x64'
-    - name: Get Python version
-      run: python -V
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-    - name: Run Python
+        go-version: 1.18
+    # - name: Install dependencies
+    #   run: go install
+    - name: Run Go
       env:
         WEBHOOK_URL: ${{secrets.WEBHOOK_URL}}
         CHANNEL: ${{secrets.CHANNEL}}
         ICON_URL: ${{secrets.ICON_URL}}
-      run: python send_message.py
+      run: go run main.go
