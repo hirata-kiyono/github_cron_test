@@ -13,7 +13,7 @@ func main() {
 
 	c := slack.New(TOKEN)
 
-	params := &c.GetConversationHistoryParameters{
+	params := &slack.GetConversationHistoryParameters{
 		ChannelID:          CHANNEL,
 		Cursor:             "",
 		Inclusive:          false,
