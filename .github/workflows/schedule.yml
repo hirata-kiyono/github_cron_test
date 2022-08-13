@@ -15,8 +15,8 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
-    # - name: Install dependencies
-    #   run: go install
+    - name: Install dependencies
+      run: go install
     - name: Run Go
       env:
         WEBHOOK_URL: ${{secrets.WEBHOOK_URL}}
