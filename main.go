@@ -11,15 +11,16 @@ import (
 
 func main() {
 	TOKEN := os.Getenv("TOKEN")
-	CHANNEL := os.Getenv("CHANNEL")
+	// CHANNEL := os.Getenv("CHANNEL")
+	CHANNELID := os.Getenv("CHANNELID")
 
-	TOKEN = "xoxb-682881597796-3959390218208-vIsjZgpNFLSW9RsvLqD1nHPe"
-	CHANNEL = "C029K2CNJ56"
+	TOKEN = "token"
+	CHANNELID = "C029K2CNJ56"
 
 	c := slack.New(TOKEN)
 	yesterday := int(time.Now().Add(time.Hour * 24 * (-1)).Unix())
 	params := &slack.GetConversationHistoryParameters{
-		ChannelID:          CHANNEL,
+		ChannelID:          CHANNELID,
 		Cursor:             "",
 		Inclusive:          true,
 		Latest:             "",
@@ -42,11 +43,11 @@ func main() {
 		fmt.Println(text)
 		if message.Msg.ReplyCount > 0 {
 			rparam := &slack.GetConversationRepliesParameters{
-				ChannelID: CHANNEL,
+				ChannelID: CHANNELID,
 				Timestamp: message.Msg.ThreadTimestamp,
 				Cursor:    "",
 				Inclusive: false,
-				Latest:    message.Msg.LatestReply,
+				Latest:    "",
 				Limit:     5,
 				Oldest:    "",
 			}
