@@ -14,13 +14,13 @@ func main() {
 	c := slack.New(TOKEN)
 
 	params := &slack.GetConversationHistoryParameters{
-		ChannelID:          CHANNEL,
-		Cursor:             "",
-		Inclusive:          false,
-		Latest:             "",
-		Limit:              5,
-		Oldest:             "",
-		IncludeAllMetadata: false,
+		ChannelID: CHANNEL,
+		// Cursor:             "",
+		// Inclusive:          false,
+		// Latest:             "",
+		// Limit:              5,
+		// Oldest:             "",
+		// IncludeAllMetadata: false,
 	}
 
 	res, err := c.GetConversationHistory(params)
